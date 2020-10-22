@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::get('/index', 'DrawingController@index');
+Route::get('/map', 'DrawingController@map');
+Route::get('/about', 'DrawingController@about');
+
+Route::get('/city/{city}','DrawingController@show')->name('city');
+
+
+Route::get('/buy/{city}', function($city) {
+	return view('buy', ['city' => $city]);
+});
+Route::post('/sendemail','EmailController@sendemail');
